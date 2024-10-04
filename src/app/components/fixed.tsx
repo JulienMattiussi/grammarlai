@@ -1,5 +1,6 @@
 "use client";
 import { fetchOpenAI } from "@/openAIProvider";
+import { buildTextDiff } from "@/buildTextDiff";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -12,6 +13,7 @@ export const Fixed = () => {
   useEffect(() => {
     if (!query) return;
     fetchOpenAI(query).then((answer) => setAnswer(answer));
+    console.log(buildTextDiff(query, answer));
   }, [answer, query]);
 
   return (
