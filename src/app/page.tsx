@@ -1,10 +1,16 @@
-import { Input } from "./components/input";
-import { Fixed } from "./components/fixed";
-import { Sidebar } from "./components/sidebar";
-import data from "./components/data.json";
+"use client";
+import { useState } from "react";
+import { Result } from "./types";
+import { Input } from "./components/Input";
+import { Fixed } from "./components/Fixed";
+import { Sidebar } from "./components/Sidebar";
 import clsx from "clsx";
 
 export default function Home() {
+  const [text, setText] = useState<string>(
+    "Hello im anthony and i like patatoes. wat about you ? I love doing horse. I think he is beautifull"
+  );
+  const [result, setResult] = useState<Result | undefined>(undefined);
   return (
     <div className="flex column">
       <div
@@ -15,12 +21,12 @@ export default function Home() {
         )}
       >
         <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-          <Input />
-          <Fixed />
+          <Input text={text} setText={setText} setResult={setResult} />
+          <Fixed text={result?.textTargetMarked} />
         </main>
       </div>
       <div className="grow h-screen overflow-y-scroll">
-        <Sidebar data={data} />
+        <Sidebar result={result} setResult={setResult} />
       </div>
     </div>
   );
