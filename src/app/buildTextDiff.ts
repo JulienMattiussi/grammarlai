@@ -1,17 +1,23 @@
 import { diffWords } from "diff";
 import { Result } from "./types";
 
-export const buildTextDiff = (textSource: string, textTarget: string): Result => {
+export const buildTextDiff = (
+  textSource: string,
+  textTarget: string
+): Result => {
   const differences = diffWords(textSource, textTarget);
   const textSourceMarked = differences
+    .map((item, index) => {
+      return { ...item, index };
+    })
     .filter((item) => {
       return item.added === false;
     })
-    .reduce((acc, item, index) => {
+    .reduce((acc, item) => {
       return (
         acc +
         (item.removed
-          ? `<span id=${index} class="changed">${item.value}</span>`
+          ? `<span id=${item.index} class="changed">${item.value}</span>`
           : item.value)
       );
     }, "");
@@ -20,13 +26,8 @@ export const buildTextDiff = (textSource: string, textTarget: string): Result =>
     .filter((item) => {
       return item.removed === false;
     })
-    .reduce((acc, item, index) => {
-      return (
-        acc +
-        (item.added
-          ? `<span id=${index} class="changed">${item.value}</span>`
-          : item.value)
-      );
+    .reduce((acc, item) => {
+      return acc + item.value;
     }, "");
 
   return { textSourceMarked, textTargetMarked, differences };
