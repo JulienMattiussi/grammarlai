@@ -7,15 +7,16 @@ import { buildTextDiff } from "../buildTextDiff";
 interface InputProps {
   text: string;
   setText: (text: string) => void;
+  result: Result | undefined;
   setResult: (result: Result) => void;
 }
 
-export const Input = ({ text, setText, setResult }: InputProps) => {
+export const Input = ({ text, setText, result, setResult }: InputProps) => {
   const handleClick = () => {
     fetchOpenAI(text).then((correctedText) => {
       const result = buildTextDiff(text, correctedText);
       setResult(result);
-      setText(result.textSourceMarked);
+      //setText(result.textSourceMarked);
     });
   };
 
@@ -28,7 +29,12 @@ export const Input = ({ text, setText, setResult }: InputProps) => {
         onChange={(e) => setText(e.target.value)}
         rows={6}
         cols={50}
+        spellCheck={false}
       />
+      <span
+        className="w-64"
+        dangerouslySetInnerHTML={{ __html: result?.textSourceMarked || "" }}
+      ></span>
       <button
         onClick={handleClick}
         title="Correct Me"
