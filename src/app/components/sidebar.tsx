@@ -12,21 +12,31 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ data }: SidebarProps) => {
+  let firstItemAdded = false;
+  const isFirstItem = () => {
+    if (firstItemAdded) return false;
+    firstItemAdded = true;
+    return true;
+  };
   return (
     <aside className="border-l-4 p-4">
-      {/* <button className="bg-blue-500 text-white rounded">Apply All</button> */}
+      <button className="bg-blue-500 text-white rounded mb-4">Apply All</button>
       <div>
-        {data.map((item, index) => (
-          <div
-            key={index}
-            className={clsx("border-b-2 p-4", index === 0 ? "border-t-2" : "")}
-          >
-            <h3 className="text-lg font-bold">{item.value}</h3>
-            <p>{item.count}</p>
-            <p>{item.added}</p>
-            <p>{item.removed}</p>
-          </div>
-        ))}
+        {data.map(
+          (item, index) =>
+            item.added && (
+              <div
+                key={index}
+                className={clsx(
+                  "border-b-2 p-4",
+                  isFirstItem() && "border-t-2"
+                )}
+              >
+                <h3 className="text-lg font-bold">{item.value}</h3>
+                <h3 className="line-through">{data[index - 1].value}</h3>
+              </div>
+            )
+        )}
       </div>
     </aside>
   );
