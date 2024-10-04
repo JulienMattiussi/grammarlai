@@ -1,7 +1,7 @@
 "use client";
 
 interface FixedProps {
-  text: string | undefined;
+  text?: string;
 }
 
 export const Fixed = ({ text }: FixedProps) => {

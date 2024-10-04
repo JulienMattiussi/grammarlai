@@ -1,7 +1,7 @@
 import { diffWords } from "diff";
 import { Result } from "./types";
 
-export const buildTextDiff = (textSource: string, textTarget: string) => {
+export const buildTextDiff = (textSource: string, textTarget: string): Result => {
   const differences = diffWords(textSource, textTarget);
   const textSourceMarked = differences
     .filter((item) => {
@@ -29,7 +29,5 @@ export const buildTextDiff = (textSource: string, textTarget: string) => {
       );
     }, "");
 
-  const result: Result = { textSourceMarked, textTargetMarked, differences };
-
-  return result;
+  return { textSourceMarked, textTargetMarked, differences };
 };
