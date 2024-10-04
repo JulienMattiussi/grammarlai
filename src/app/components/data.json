@@ -1,0 +1,30 @@
+[
+  { "count": 1, "added": false, "removed": false, "value": "Hello" },
+  { "count": 2, "added": false, "removed": true, "value": " im anthony" },
+  { "count": 5, "added": true, "removed": false, "value": ", I'm Anthony" },
+  { "count": 1, "added": false, "removed": false, "value": " and " },
+  { "count": 1, "added": false, "removed": true, "value": "i" },
+  { "count": 1, "added": true, "removed": false, "value": "I" },
+  { "count": 1, "added": false, "removed": false, "value": " like " },
+  { "count": 1, "added": false, "removed": true, "value": "patatoes" },
+  { "count": 1, "added": true, "removed": false, "value": "potatoes" },
+  { "count": 1, "added": false, "removed": false, "value": ". " },
+  { "count": 1, "added": false, "removed": true, "value": "wat" },
+  { "count": 1, "added": true, "removed": false, "value": "What" },
+  {
+    "count": 5,
+    "added": false,
+    "removed": false,
+    "value": " about you? I love "
+  },
+  { "count": 2, "added": false, "removed": true, "value": "doing horse" },
+  { "count": 2, "added": true, "removed": false, "value": "horseback riding" },
+  { "count": 3, "added": false, "removed": false, "value": ". I think " },
+  { "count": 3, "added": false, "removed": true, "value": "he is beautifull" },
+  {
+    "count": 4,
+    "added": true,
+    "removed": false,
+    "value": "horses are beautiful."
+  }
+]
