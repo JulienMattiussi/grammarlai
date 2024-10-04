@@ -6,11 +6,11 @@ export const buildTextDiff = (textSource: string, textTarget: string) => {
     .filter((item) => {
       return item.added === false;
     })
-    .reduce((acc, item) => {
+    .reduce((acc, item, index) => {
       return (
         acc +
         (item.removed
-          ? `<span class="changed">${item.value}</span>`
+          ? `<span id=${index} class="changed">${item.value}</span>`
           : item.value)
       );
     }, "");
@@ -19,10 +19,12 @@ export const buildTextDiff = (textSource: string, textTarget: string) => {
     .filter((item) => {
       return item.removed === false;
     })
-    .reduce((acc, item) => {
+    .reduce((acc, item, index) => {
       return (
         acc +
-        (item.added ? `<span class="changed">${item.value}</span>` : item.value)
+        (item.added
+          ? `<span id=${index} class="changed">${item.value}</span>`
+          : item.value)
       );
     }, "");
 
