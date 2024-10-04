@@ -18,7 +18,7 @@ export const fetchOpenAI = async (message: string) => {
           role: "system",
           content: "Correct the following text",
         },
-        { role: "user", content: message },
+        { role: "user", content: sanitizeText(message) },
       ],
     },
   };
@@ -43,4 +43,8 @@ export const fetchOpenAI = async (message: string) => {
   console.log(correctedText);
 
   return correctedText;
+};
+
+export const sanitizeText = (text: string) => {
+  return text.replace(/<[^>]*>?/gm, "");
 };
