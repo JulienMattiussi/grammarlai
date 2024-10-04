@@ -34,9 +34,13 @@ export const fetchOpenAI = async (message: string) => {
     "Authorization",
     `Bearer ${process.env.OPEN_AI_KEY}`
   );
-  const result = await fetch(OPEN_AI_ENDPOINT, requestOptions);
+  const response = await fetch(OPEN_AI_ENDPOINT, requestOptions);
 
-  console.log(result);
+  const result = await response.json();
 
-  return result;
+  const correctedText = result.choices[0].message.content;
+
+  console.log(correctedText);
+
+  return correctedText;
 };
