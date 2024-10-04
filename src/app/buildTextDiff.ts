@@ -1,4 +1,5 @@
 import { diffWords } from "diff";
+import { Result } from "./types";
 
 export const buildTextDiff = (textSource: string, textTarget: string) => {
   const differences = diffWords(textSource, textTarget);
@@ -28,5 +29,7 @@ export const buildTextDiff = (textSource: string, textTarget: string) => {
       );
     }, "");
 
-  return { textSourceMarked, textTargetMarked, differences };
+  const result: Result = { textSourceMarked, textTargetMarked, differences };
+
+  return result;
 };

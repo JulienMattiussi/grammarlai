@@ -42,7 +42,7 @@ export const fetchOpenAI = async (message: string) => {
 
   console.log(correctedText);
 
-  return correctedText;
+  return correctedText as string;
 };
 
 export const sanitizeText = (text: string) => {
