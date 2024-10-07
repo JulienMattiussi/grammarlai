@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
+import { EditableComponent } from "./EditableComponent";
 import { Result } from "../types";
-import { fetchOpenAI } from "../openAIProvider";
+import { fetchOpenAI, sanitizeText } from "../openAIProvider";
 import { buildTextDiff } from "../buildTextDiff";
 
 interface InputProps {
@@ -20,6 +21,15 @@ export const Input = ({ text, setText, result, setResult }: InputProps) => {
     });
   };
 
+  const handleChange = (newText: string) => {
+    setResult({
+      differences: result?.differences || [],
+      textSourceMarked: newText as string,
+      textTargetMarked: result?.textTargetMarked || "",
+    });
+    setText(sanitizeText(newText));
+  };
+
   return (
     <div className="flex flex-col justify-center items-center">
       <textarea
@@ -29,12 +39,14 @@ export const Input = ({ text, setText, result, setResult }: InputProps) => {
         onChange={(e) => setText(e.target.value)}
         rows={6}
         cols={50}
+        style={{ display: "none" }}
         spellCheck={false}
       />
-      <span
-        className="w-64"
-        dangerouslySetInnerHTML={{ __html: result?.textSourceMarked || "" }}
-      ></span>
+      <EditableComponent
+        text={result?.textSourceMarked || text}
+        handleChange={handleChange}
+      />
+
       <button
         onClick={handleClick}
         title="Correct Me"
