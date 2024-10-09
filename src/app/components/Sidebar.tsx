@@ -18,11 +18,13 @@ export const Sidebar = ({ result, setResult }: SidebarProps) => {
 
   const applyChange = (index: number) => {
     const newTextSourceMarked = result.textSourceMarked.replace(
-      `<span id=${index} class="changed">${result.differences[index].value}</span>`,
-      result.differences[index + 1].value
+      `<span id=${index} class="changed">${
+        result.differences.find((item) => item.index === index)!.value
+      }</span>`,
+      result.differences.find((item) => item.index === index + 1)!.value
     );
     const newDifferences = result.differences.filter(
-      (item, i) => i !== index && i !== index + 1
+      (item) => item.index !== index && item.index !== index + 1
     );
     setResult({
       ...result,
@@ -49,10 +51,10 @@ export const Sidebar = ({ result, setResult }: SidebarProps) => {
       </button>
       <div>
         {result.differences.map(
-          (item, index) =>
+          (item) =>
             item.removed && (
               <div
-                key={index}
+                key={item.index}
                 className={clsx(
                   "border-b-2 p-4",
                   isFirstItem() && "border-t-2",
@@ -61,11 +63,15 @@ export const Sidebar = ({ result, setResult }: SidebarProps) => {
               >
                 <div>
                   <h3 className="text-lg font-bold">
-                    {result.differences[index + 1].value}
+                    {
+                      result.differences.find(
+                        (r) => (r.index = item.index + 1)
+                      )!.value
+                    }
                   </h3>
                   <h3 className="line-through">{item.value}</h3>
                 </div>
-                <button onClick={() => applyChange(index)}>
+                <button onClick={() => applyChange(item.index)}>
                   <Image
                     alt="Apply suggestion"
                     src="/static/logo_transparent.png"

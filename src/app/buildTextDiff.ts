@@ -22,5 +22,9 @@ export const buildTextDiff = (
       );
     }, "");
 
-  return { textSourceMarked, textTargetMarked: textTarget, differences };
+  return {
+    textSourceMarked,
+    textTargetMarked: textTarget,
+    differences: differences.map((item, index) => ({ ...item, index })),
+  };
 };
