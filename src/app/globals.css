@@ -26,4 +26,21 @@ body {
   }
 }
 
-html, body { height: 100%; }
+.changed {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: #fb0202;
+  :hover {
+    text-decoration-color: #350ad4;
+  }
+}
+
+.changed:hover {
+  text-decoration-color: #350ad4;
+  color: #fb0202;
+}
+
+html,
+body {
+  height: 100%;
+}
