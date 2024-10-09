@@ -27,6 +27,7 @@ export default function Home() {
             result={result}
             setResult={setResult}
           />
+          <Fixed text={result?.textSourceMarked} />
           <Fixed text={result?.textTargetMarked} />
         </main>
       </div>
