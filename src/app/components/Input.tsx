@@ -23,7 +23,6 @@ export const Input = ({
   setIsLoading,
 }: InputProps) => {
   const handleClick = () => {
-    if (!text) return;
     setIsLoading(true);
     fetchOpenAI(text).then((correctedText) => {
       const result = buildTextDiff(text, correctedText);
