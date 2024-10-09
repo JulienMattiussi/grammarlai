@@ -22,13 +22,5 @@ export const buildTextDiff = (
       );
     }, "");
 
-  const textTargetMarked = differences
-    .filter((item) => {
-      return item.removed === false;
-    })
-    .reduce((acc, item) => {
-      return acc + item.value;
-    }, "");
-
-  return { textSourceMarked, textTargetMarked, differences };
+  return { textSourceMarked, textTargetMarked: textTarget, differences };
 };
