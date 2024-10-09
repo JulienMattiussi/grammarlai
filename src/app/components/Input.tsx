@@ -24,7 +24,7 @@ export const Input = ({ text, setText, result, setResult }: InputProps) => {
   const handleChange = (newText: string) => {
     setResult({
       differences: result?.differences || [],
-      textSourceMarked: newText as string,
+      textSourceMarked: newText,
       textTargetMarked: result?.textTargetMarked || "",
     });
     setText(sanitizeText(newText));

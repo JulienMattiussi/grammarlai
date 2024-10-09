@@ -38,7 +38,6 @@ body {
 .changed:hover {
   text-decoration-color: #350ad4;
   color: #fb0202;
-  cursor: pointer;
 }
 
 html,
