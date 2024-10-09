@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import { Result } from "../types";
-// import { sanitizeText } from "../openAIProvider";
 import Image from "next/image";
 
 interface SidebarProps {
@@ -18,8 +17,6 @@ export const Sidebar = ({ result, setResult }: SidebarProps) => {
   };
 
   const applyChange = (index: number) => {
-    console.log("index", index);
-    console.log(result);
     const newTextSourceMarked = result.textSourceMarked.replace(
       `<span id=${index} class="changed">${result.differences[index].value}</span>`,
       result.differences[index + 1].value
@@ -32,7 +29,6 @@ export const Sidebar = ({ result, setResult }: SidebarProps) => {
       textSourceMarked: newTextSourceMarked,
       differences: newDifferences,
     });
-    console.log(result);
   };
 
   const applyAll = () => {
