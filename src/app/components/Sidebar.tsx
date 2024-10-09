@@ -48,7 +48,7 @@ export const Sidebar = ({ result, setResult }: SidebarProps) => {
   return (
     <aside className="border-l-4 p-4 h-full">
       <button
-        className="bg-blue-500 text-white rounded p-2 mb-4"
+        className="bg-blue-500 text-white rounded p-2 mb-4 w-full"
         onClick={applyAll}
       >
         Apply All
@@ -69,7 +69,7 @@ export const Sidebar = ({ result, setResult }: SidebarProps) => {
                   <h3 className="text-lg font-bold">
                     {
                       result.differences.find(
-                        (r) => (r.index = item.index + 1)
+                        (r) => (r.index === item.index + 1)
                       )!.value
                     }
                   </h3>
