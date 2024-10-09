@@ -9,9 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "clsx": "^2.1.1",
     "@types/diff": "^5.2.2",
+    "clsx": "^2.1.1",
     "diff": "^7.0.0",
+    "highlight-search-term": "^1.0.3",
     "next": "14.2.14",
     "react": "^18",
     "react-dom": "^18",

@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import { Result } from "../types";
 import Image from "next/image";
+import { highlightSearchTerm } from "highlight-search-term";
+import { useState } from "react";
 
 interface SidebarProps {
   result?: Result;
@@ -8,6 +10,11 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ result, setResult }: SidebarProps) => {
+  const [search, setSearch] = useState<string>("");
+  const [selector, setSelector] = useState<number>(0);
+
+  highlightSearchTerm({ search: search, selector: `.changed-${selector}` });
+
   if (
     !result ||
     result?.differences.filter((item) => item.removed).length === 0
@@ -22,7 +29,7 @@ export const Sidebar = ({ result, setResult }: SidebarProps) => {
 
   const applyChange = (index: number) => {
     const newTextSourceMarked = result.textSourceMarked.replace(
-      `<span id=${index} class="changed">${
+      `<span id=${index} class="changed changed-${index}">${
         result.differences.find((item) => item.index === index)!.value
       }</span>`,
       result.differences.find((item) => item.index === index + 1)!.value
@@ -64,6 +71,14 @@ export const Sidebar = ({ result, setResult }: SidebarProps) => {
                   isFirstItem() && "border-t-2",
                   "flex justify-between items-center"
                 )}
+                onMouseOver={()=>{
+                  setSearch(item.value)
+                  setSelector(item.index)
+                }}
+                onMouseOut={()=>{
+                  setSearch("")
+                  setSelector(0)
+                }}
               >
                 <div>
                   <h3 className="text-lg font-bold">

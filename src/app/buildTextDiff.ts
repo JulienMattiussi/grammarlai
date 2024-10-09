@@ -17,7 +17,7 @@ export const buildTextDiff = (
       return (
         acc +
         (item.removed
-          ? `<span id=${item.index} class="changed">${item.value}</span>`
+          ? `<span id=${item.index} class="changed changed-${item.index}">${item.value}</span>`
           : item.value)
       );
     }, "");
