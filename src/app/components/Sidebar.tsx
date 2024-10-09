@@ -8,7 +8,11 @@ interface SidebarProps {
 }
 
 export const Sidebar = ({ result, setResult }: SidebarProps) => {
-  if (!result) return null;
+  if (
+    !result ||
+    result?.differences.filter((item) => item.removed).length === 0
+  )
+    return null;
   let firstItemAdded = false;
   const isFirstItem = () => {
     if (firstItemAdded) return false;
