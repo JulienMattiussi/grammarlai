@@ -17,7 +17,13 @@ export const EditableComponent = ({
       dangerouslySetInnerHTML={{ __html: text }}
       spellCheck={false}
       ref={editorRef}
-      style={{ minHeight: 200, border: "1px solid black" }}
+      style={{
+        height: "50vh",
+        border: "1px solid black",
+        padding: "3em",
+        margin: "3em",
+        width: "100%",
+      }}
     />
   );
 };

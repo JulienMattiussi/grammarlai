@@ -46,9 +46,9 @@ export const Sidebar = ({ result, setResult }: SidebarProps) => {
   };
 
   return (
-    <aside className="border-l-4 p-4">
+    <aside className="border-l-4 p-4 h-full">
       <button
-        className="bg-blue-500 text-white rounded mb-4"
+        className="bg-blue-500 text-white rounded p-2 mb-4"
         onClick={applyAll}
       >
         Apply All
